@@ -1,7 +1,10 @@
-# aitajuoksu-base
+# aitajuoksu-training
 
-Project base for a hurdle jumping game in Godot
+Accompanying git project for "aitajuoksu" training material. The repository has a separate branch
+for changes made during each session.
 
 //
 
-Godot-aitajuoksupelin projektipohja
+Aitajuoksupelin koulutuksen projektimateriaali. Jokaisen koulutusjakson aikana tehdyille muutoksille
+on koodisäilössä oma haaransa.
+
