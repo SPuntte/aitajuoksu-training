@@ -1,0 +1,5 @@
+# Godot (according to https://docs.godotengine.org/en/stable/tutorials/best_practices/version_control_systems.html#files-to-exclude-from-vcs)
+.import
+.mono
+*.translation
+export_presets.cfg
