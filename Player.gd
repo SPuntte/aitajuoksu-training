@@ -48,4 +48,4 @@ func _physics_process(delta):
 	velocity.y -= gravity * delta
 	velocity.x = sideways * sidestep_speed
 	velocity.z = -run_speed
-	move_and_slide(velocity)
+	velocity = move_and_slide(velocity, Vector3.UP)
