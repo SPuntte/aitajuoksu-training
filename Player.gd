@@ -42,10 +42,18 @@ func _physics_process(delta):
 		sideways -= 1.0
 	
 	# Jumping
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_speed
 	
 	velocity.y -= gravity * delta
 	velocity.x = sideways * sidestep_speed
 	velocity.z = -run_speed
-	move_and_slide(velocity)
+	velocity = move_and_slide(velocity, Vector3.UP)
+	
+	# Detect collisions
+	for index in range(get_slide_count()):
+		var collision = get_slide_collision(index)
+		var collision_object = collision.collider as CollisionObject
+		if collision_object.collision_layer & 4:
+			# We're colliding with an obstacle
+			get_tree().reload_current_scene()
