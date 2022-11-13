@@ -65,3 +65,7 @@ collision_layer = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Grass/Sand/Colliders/StaticBody"]
 shape = SubResource( 9 )
+
+[node name="Obstacles" type="Spatial" parent="Grass/Sand"]
+
+[node name="Trees" type="Spatial" parent="Grass"]
