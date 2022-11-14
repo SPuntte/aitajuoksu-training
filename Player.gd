@@ -1,5 +1,7 @@
 extends KinematicBody
 
+signal obstacle_hit
+
 # Player movement
 var sidestep_speed := 5.0
 var run_speed: float
@@ -29,16 +31,17 @@ func setup_jump(length: float, height: float, speed: float):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	# Player animation
-	body_hinge.translation.y = step_height * (1 + sin(2.0 * PI * step_freq * time))
-	body_hinge.rotation_degrees.z = step_tilt * sin(PI * step_freq * time)
-	time += delta
+	# Player animation (while on ground)
+	if is_on_floor():
+		body_hinge.translation.y = step_height * (1 + sin(2.0 * PI * step_freq * time))
+		body_hinge.rotation_degrees.z = step_tilt * sin(PI * step_freq * time)
+		time += delta
 	
 	# Sideways movement
 	var sideways: float = 0.0
-	if Input.is_action_pressed("move_right"):
+	if Input.is_action_pressed("move_right") and is_on_floor():
 		sideways += 1.0
-	if Input.is_action_pressed("move_left"):
+	if Input.is_action_pressed("move_left") and is_on_floor():
 		sideways -= 1.0
 	
 	# Jumping
@@ -54,6 +57,6 @@ func _physics_process(delta):
 	for index in range(get_slide_count()):
 		var collision = get_slide_collision(index)
 		var collision_object = collision.collider as CollisionObject
-		if collision_object.collision_layer & 4:
+		if collision_object.collision_layer & 4 and rad2deg(collision.get_angle()) > 60:
 			# We're colliding with an obstacle
-			get_tree().reload_current_scene()
+			emit_signal("obstacle_hit")
