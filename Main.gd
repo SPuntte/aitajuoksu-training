@@ -16,11 +16,19 @@ var road_scenes = [
 onready var player = $Player
 onready var camera_pivot = $CameraPivot
 
+onready var game_over_screen: Control = $UI/GameOverScreen
+onready var pause_screen: Control = $UI/PauseScreen
+
+var can_pause := false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Make every play different
 	randomize()
+	
+	# Pause until the start screen is dismissed
+	get_tree().paused = true
 	
 	player.setup_jump(jump_length, jump_height, run_speed)
 	
@@ -31,6 +39,14 @@ func _ready():
 
 
 func _physics_process(delta):
+	if can_pause and Input.is_action_just_pressed("pause"):
+		if get_tree().paused:
+			get_tree().paused = false
+			pause_screen.hide()
+		else:
+			get_tree().paused = true
+			pause_screen.show()
+	
 	if player.translation.z < -RoadBase.LENGTH:
 		# Teleport player back to the origin
 		player.translation.z += RoadBase.LENGTH
@@ -59,3 +75,19 @@ func make_random_road() -> RoadBase:
 	var road_scene = road_scenes[randi() % road_scenes.size()]
 	var road = road_scene.instance()
 	return road
+
+
+func _on_StartScreen_dismissed():
+	get_tree().paused = false
+	can_pause = true
+
+
+func _on_Player_obstacle_hit():
+	get_tree().paused = true
+	can_pause = false
+	game_over_screen.show()
+
+
+func _on_GameOverScreen_dismissed():
+	# warning-ignore: return_value_discarded
+	get_tree().reload_current_scene()

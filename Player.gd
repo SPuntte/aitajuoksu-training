@@ -1,5 +1,7 @@
 extends KinematicBody
 
+signal obstacle_hit
+
 # Player movement
 var sidestep_speed := 5.0
 var run_speed: float
@@ -57,4 +59,4 @@ func _physics_process(delta):
 		var collision_object = collision.collider as CollisionObject
 		if collision_object.collision_layer & 4 and rad2deg(collision.get_angle()) > 60:
 			# We're colliding with an obstacle
-			get_tree().reload_current_scene()
+			emit_signal("obstacle_hit")
