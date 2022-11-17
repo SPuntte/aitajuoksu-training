@@ -1,5 +1,6 @@
 extends Area
 
+export var score_value: int = 1
 var rotation_speed: float = 300.0 * rand_range(0.8, 1.2)
 
 onready var coin_mesh: MeshInstance = $MeshInstance
@@ -10,6 +11,6 @@ func _process(delta):
 
 
 func _on_Coin_body_entered(body):
-	if body is Player:
-		ScoreEvents.award_points(1)
+	if body is Player and score_value > 0:
+		ScoreEvents.coin_collected(score_value)
 		queue_free()

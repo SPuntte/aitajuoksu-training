@@ -33,9 +33,9 @@ func _ready():
 	
 	# Reset scorekeeping and listen to changes
 	ScoreEvents.reset()
-	hud.set_score(ScoreEvents.score_total)
+	hud.update()
 	# warning-ignore: return_value_discarded
-	ScoreEvents.connect("score_changed", self, "_on_ScoreEvents_score_changed")
+	ScoreEvents.connect("score_changed", hud, "update")
 	
 	player.setup_jump(jump_length, jump_height, run_speed)
 	
@@ -100,7 +100,3 @@ func _on_Player_obstacle_hit():
 func _on_GameOverScreen_dismissed():
 	# warning-ignore: return_value_discarded
 	get_tree().reload_current_scene()
-
-
-func _on_ScoreEvents_score_changed():
-	hud.set_score(ScoreEvents.score_total)

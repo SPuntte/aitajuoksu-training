@@ -1,5 +1,7 @@
 class_name HUD
 extends Control
 
-func set_score(score):
-	$Label.text = "Score: %d" % score
+func update():
+	$ScoreLabel.text = "Score: %d" % ScoreEvents.score_total
+	$CoinsLabel.text = "Coins: %d" % ScoreEvents.coin_total
+	$ObstaclesLabel.text = "Obstacles: %d" % ScoreEvents.obstacle_total
