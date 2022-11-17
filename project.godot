@@ -9,12 +9,24 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Control",
+"class": "HUD",
+"language": "GDScript",
+"path": "res://ui/HUD.gd"
+}, {
+"base": "KinematicBody",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Player.gd"
+}, {
 "base": "Spatial",
 "class": "RoadBase",
 "language": "GDScript",
 "path": "res://RoadBase.gd"
 } ]
 _global_script_class_icons={
+"HUD": "",
+"Player": "",
 "RoadBase": ""
 }
 
@@ -23,6 +35,10 @@ _global_script_class_icons={
 config/name="Aitajuoksu"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+ScoreEvents="*res://ScoreEvents.gd"
 
 [input]
 

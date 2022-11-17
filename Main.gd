@@ -16,6 +16,7 @@ var road_scenes = [
 onready var player = $Player
 onready var camera_pivot = $CameraPivot
 
+onready var hud: HUD = $UI/HUD
 onready var game_over_screen: Control = $UI/GameOverScreen
 onready var pause_screen: Control = $UI/PauseScreen
 
@@ -30,6 +31,12 @@ func _ready():
 	# Pause until the start screen is dismissed
 	get_tree().paused = true
 	
+	# Reset scorekeeping and listen to changes
+	ScoreEvents.reset()
+	hud.update()
+	# warning-ignore: return_value_discarded
+	ScoreEvents.connect("score_changed", hud, "update")
+	
 	player.setup_jump(jump_length, jump_height, run_speed)
 	
 	for i in range(initial_road_count):
@@ -38,7 +45,7 @@ func _ready():
 		add_child(road)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if can_pause and Input.is_action_just_pressed("pause"):
 		if get_tree().paused:
 			get_tree().paused = false
@@ -78,11 +85,13 @@ func make_random_road() -> RoadBase:
 
 
 func _on_StartScreen_dismissed():
+	hud.show()
 	get_tree().paused = false
 	can_pause = true
 
 
 func _on_Player_obstacle_hit():
+	hud.hide()
 	get_tree().paused = true
 	can_pause = false
 	game_over_screen.show()

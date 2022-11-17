@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://RoadBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Tree_2.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://assets/Tree_1.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://Hurdle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Coin.tscn" type="PackedScene" id=5]
 
 [node name="Road1" instance=ExtResource( 1 )]
 
@@ -21,6 +22,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40255, 0.6, -13.7225 )
 
 [node name="Hurdle5" parent="Grass/Sand/Obstacles" index="4" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -3.837 )
+
+[node name="Coin" parent="Grass/Sand/Obstacles" index="5" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83497, 0.6, 17.3098 )
+
+[node name="Coin2" parent="Grass/Sand/Obstacles" index="6" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.96568, 0.600001, -5.76453 )
+
+[node name="Coin3" parent="Grass/Sand/Obstacles" index="7" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.03741, 0.6, 6.76252 )
+
+[node name="Coin4" parent="Grass/Sand/Obstacles" index="8" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.628359, 0.6, 9.61824 )
 
 [node name="Tree_1" type="MeshInstance" parent="Grass/Trees" index="0"]
 transform = Transform( -1.64684, 0, -0.526778, 0, 1.72904, 0, 0.526778, 0, -1.64684, -8.12321, 0.410612, -10.3002 )
