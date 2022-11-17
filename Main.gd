@@ -16,6 +16,7 @@ var road_scenes = [
 onready var player = $Player
 onready var camera_pivot = $CameraPivot
 
+onready var hud: HUD = $UI/HUD
 onready var game_over_screen: Control = $UI/GameOverScreen
 onready var pause_screen: Control = $UI/PauseScreen
 
@@ -32,6 +33,8 @@ func _ready():
 	
 	# Reset scorekeeping and listen to changes
 	ScoreEvents.reset()
+	hud.set_score(ScoreEvents.score_total)
+	# warning-ignore: return_value_discarded
 	ScoreEvents.connect("score_changed", self, "_on_ScoreEvents_score_changed")
 	
 	player.setup_jump(jump_length, jump_height, run_speed)
@@ -82,11 +85,13 @@ func make_random_road() -> RoadBase:
 
 
 func _on_StartScreen_dismissed():
+	hud.show()
 	get_tree().paused = false
 	can_pause = true
 
 
 func _on_Player_obstacle_hit():
+	hud.hide()
 	get_tree().paused = true
 	can_pause = false
 	game_over_screen.show()
@@ -98,4 +103,4 @@ func _on_GameOverScreen_dismissed():
 
 
 func _on_ScoreEvents_score_changed():
-	print("Score changed, current score: %d" % ScoreEvents.score_total)
+	hud.set_score(ScoreEvents.score_total)
