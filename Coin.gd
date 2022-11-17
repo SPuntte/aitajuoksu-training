@@ -10,4 +10,5 @@ func _process(delta):
 
 func _on_Coin_body_entered(body):
 	if body is Player:
+		ScoreEvents.award_points(1)
 		queue_free()

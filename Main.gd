@@ -30,6 +30,10 @@ func _ready():
 	# Pause until the start screen is dismissed
 	get_tree().paused = true
 	
+	# Reset scorekeeping and listen to changes
+	ScoreEvents.reset()
+	ScoreEvents.connect("score_changed", self, "_on_ScoreEvents_score_changed")
+	
 	player.setup_jump(jump_length, jump_height, run_speed)
 	
 	for i in range(initial_road_count):
@@ -91,3 +95,7 @@ func _on_Player_obstacle_hit():
 func _on_GameOverScreen_dismissed():
 	# warning-ignore: return_value_discarded
 	get_tree().reload_current_scene()
+
+
+func _on_ScoreEvents_score_changed():
+	print("Score changed, current score: %d" % ScoreEvents.score_total)
