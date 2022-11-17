@@ -38,7 +38,7 @@ func _ready():
 		add_child(road)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if can_pause and Input.is_action_just_pressed("pause"):
 		if get_tree().paused:
 			get_tree().paused = false
