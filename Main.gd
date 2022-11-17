@@ -8,8 +8,8 @@ var jump_height: float = 2.0
 var initial_road_count: int = 5
 var road_scenes = [
 	load("res://Road1.tscn"),
-	load("res://Road2.tscn"),
-	load("res://Road3.tscn"),
+	#load("res://Road2.tscn"),
+	#load("res://Road3.tscn"),
 ]
 
 # References to nodes
