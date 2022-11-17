@@ -24,16 +24,16 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40255, 0.6, -13.7225 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -3.837 )
 
 [node name="Coin" parent="Grass/Sand/Obstacles" index="5" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83497, 0.6, 15.8705 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83497, 0.6, 17.3098 )
 
 [node name="Coin2" parent="Grass/Sand/Obstacles" index="6" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7726, 0.6, 13.6647 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.96568, 0.600001, -5.76453 )
 
 [node name="Coin3" parent="Grass/Sand/Obstacles" index="7" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.325672, 0.6, 15.8705 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.03741, 0.6, 6.76252 )
 
 [node name="Coin4" parent="Grass/Sand/Obstacles" index="8" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36761, 0.6, 14.4057 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.628359, 0.6, 9.61824 )
 
 [node name="Tree_1" type="MeshInstance" parent="Grass/Trees" index="0"]
 transform = Transform( -1.64684, 0, -0.526778, 0, 1.72904, 0, 0.526778, 0, -1.64684, -8.12321, 0.410612, -10.3002 )
